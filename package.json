@@ -4,6 +4,7 @@
   "description": "Reusable formsy components that bounds with formsy",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --hot --inline --content-base ./examples --port 3000",
     "lint": "eslint ./ --ext .jsx --ext .js",
     "test": "mocha ./tests/**.js"
   },
@@ -14,7 +15,8 @@
     "react": "^15.4.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "eslint-loader": "^1.6.3"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
