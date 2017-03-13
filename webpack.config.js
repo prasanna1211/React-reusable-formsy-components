@@ -2,9 +2,11 @@ const path = require('path');
 /*
  * Defines path here.
  */
-const BUILD_DIR = path.resolve(__dirname, 'examples');
+const BUILD_DIR = path.resolve(__dirname);
 const APP_DIR = path.resolve(__dirname, 'examples/app');
 const rootJs = 'index.js';
+
+console.log(" build dire ", BUILD_DIR, APP_DIR);
 /*
  * Config file for webpack.
  * Change here in order to change the webpack settings
@@ -19,6 +21,7 @@ const config = {
    */
   output: {
     path: BUILD_DIR,
+    publicPath: '/examples/',
     filename: 'bundle.js',
   },
   /*
@@ -68,6 +71,7 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
+  watch: true,
 };
 
 module.exports = config;

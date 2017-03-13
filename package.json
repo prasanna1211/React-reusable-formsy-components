@@ -4,7 +4,7 @@
   "description": "Reusable formsy components that bounds with formsy",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --content-base ./examples --port 3000",
+    "start": "webpack --hot --inline --content-base ./examples --port 3000",
     "lint": "eslint ./ --ext .jsx --ext .js",
     "test": "mocha ./tests/**.js"
   },
