@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       passThroughValue: 'not changed',
     };
+
     this.onChange = this.onChange.bind(this);
   }
 
@@ -33,6 +34,10 @@ class App extends React.Component {
             wrapperClass="parent-class"
             fieldClass="child-class"
             onChange={this.onChange}
+            onMouseEnter={this.onChange}
+            wrapperStyle={this.wrapperStyle}
+            fieldStyle={this.fieldStyle}
+            inline
           />
         </Formsy.Form>
       </div>
