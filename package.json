@@ -16,9 +16,13 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "css-loader": "^0.25.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.6.3",
-    "pick-react-known-prop": "^0.1.0"
+    "node-sass": "^3.4.2",
+    "pick-react-known-prop": "^0.1.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",

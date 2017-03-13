@@ -13,32 +13,46 @@ class App extends React.Component {
 
     this.state = {
       passThroughValue: 'not changed',
+      canSubmit: false,
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.onChangeInput = this.onChangeInput.bind(this);
+    this.ontest = this.ontest.bind(this);
   }
 
-  onChange() {
-    this.setState({
-      passThroughValue: 'changed',
-    });
+  onChangeInput() {
+    setTimeout(() => {
+      console.log(' reached calback ', this.nameRef.getValue());
+    }, 50);
+  }
+
+  ontest() {
+    console.log(' resettubg form ');
+    this.refs.hello.reset();
   }
 
   render() {
     return (
       <div>
-        <Formsy.Form>
+        <Formsy.Form
+          ref="hello"
+        >
           <InputTextBox
-            name="default"
-            value={this.state.passThroughValue}
+            name="name"
+            defaultValue="uuu"
+            ref={(c) => { this.nameRef = c; }}
+            value="aio"
             wrapperClass="parent-class"
             fieldClass="child-class"
-            onChange={this.onChange}
-            onMouseEnter={this.onChange}
+            onChangeInput={this.onChangeInput}
             wrapperStyle={this.wrapperStyle}
             fieldStyle={this.fieldStyle}
+            validations="isEmail"
+            validationError="Not a valid email"
+            required
             inline
           />
+          <button onClick={this.ontest}>Submit</button>
         </Formsy.Form>
       </div>
     );
