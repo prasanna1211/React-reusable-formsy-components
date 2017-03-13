@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 
 const App = () => (
   <div>
-    its working
+    Test for the libraries
   </div>
 );
 /*

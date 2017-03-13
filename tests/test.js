@@ -1,10 +1,8 @@
-'use strict';
+/* global it, describe */
+const expect = require('chai').expect;
 
-var expect = require('chai').expect;
-var numFormatter = require('../index');
-
-describe(' numFormatter ', function() {
-  it(' is true ', function() {
+describe(' numFormatter ', () => {
+  it(' is true ', () => {
     expect(true);
   });
-})
+});
