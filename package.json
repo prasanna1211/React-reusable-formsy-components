@@ -1,6 +1,6 @@
 {
   "name": "reusable-formsy-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reusable formsy components that bounds with formsy",
   "main": "index.js",
   "scripts": {
