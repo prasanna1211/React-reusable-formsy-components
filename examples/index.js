@@ -5,7 +5,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 import { render } from 'react-dom';
-import { InputText, InputSelect } from '../lib/main.js';
+import { InputText, InputSelect, InputCheck, InputRadioButtonGroup } from '../lib/main.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,10 +15,10 @@ class App extends React.Component {
       passThroughValue: 'not changed',
       canSubmit: false,
     };
-    this.selectOptions=[
-      { name: 'option1', value: '1'},
-      { name: 'option2', value: '2@gmail.com'},
-      { name: 'option3', value: '3'},
+    this.cbOptions=[
+      { name: 'option1', value: '1', displayName: 'option1'},
+      { name: 'option2', value: '2@gmail.com', displayName: 'option2'},
+      { name: 'option3', value: '3', displayName: 'option3'},
     ]
     this.onChangeInput = this.onChangeInput.bind(this);
     this.ontest = this.ontest.bind(this);
@@ -49,14 +49,9 @@ class App extends React.Component {
           onChange={this.onChangeForm}
           noValidate
         >
-          <InputSelect
-            name="select1"
-            options={this.selectOptions}
-            onChangeInput={this.onChangeInput}
-            validations="changeRequired"
-            validationError="Change is required"
-            required
-            inline
+          <InputRadioButtonGroup
+            name="radio1"
+            options={this.cbOptions}
           />
           <button
             disabled={!this.state.canSubmit}
