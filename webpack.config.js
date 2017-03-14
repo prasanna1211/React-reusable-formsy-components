@@ -2,11 +2,10 @@ const path = require('path');
 /*
  * Defines path here.
  */
-const BUILD_DIR = path.resolve(__dirname);
-const APP_DIR = path.resolve(__dirname, 'examples/app');
+const BUILD_DIR = path.resolve(__dirname, 'examples/');
+const APP_DIR = path.resolve(__dirname, 'examples/');
 const rootJs = 'index.js';
 
-console.log(" build dire ", BUILD_DIR, APP_DIR);
 /*
  * Config file for webpack.
  * Change here in order to change the webpack settings
@@ -20,8 +19,8 @@ const config = {
    * Output describes the properties of bundle js
    */
   output: {
-    path: BUILD_DIR,
-    publicPath: '/examples/',
+    path: BUILD_DIR,           // contains index.html, index.js (root html, root js)
+    publicPath: '/',           // location of bundle.js relative to the html file
     filename: 'bundle.js',
   },
   /*
@@ -37,7 +36,7 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.scss$/,
@@ -58,20 +57,13 @@ const config = {
       },
     ],
   },
-  /*
-   * Describes the root component. All imports can be done with absolute address
-   */
-  resolve: {
-    root: path.resolve('src/examples'),
-  },
   devtool: 'eval-source-map',
   eslint: {
     configFile: './.eslintrc',
   },
   devServer: {
     historyApiFallback: true,
-  },
-  watch: true,
+  }
 };
 
 module.exports = config;

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../lib/main.js"],"names":["InputTextbox"],"mappings":";;;;;;;AAAA;;AACA;;;;;;AAEO,IAAMA,sCAAe,6CAArB","file":"main.js","sourcesContent":["import { HOC } from 'formsy-react';\nimport InputTextBox from './InputTextBox.js';\n\nexport const InputTextbox = HOC(InputTextBox);\n"]}

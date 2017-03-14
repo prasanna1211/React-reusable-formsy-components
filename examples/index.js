@@ -5,7 +5,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 import { render } from 'react-dom';
-import { InputTextBox } from '../../index.js';
+import { InputTextbox } from '../dist/main.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class App extends React.Component {
       passThroughValue: 'not changed',
       canSubmit: false,
     };
-
     this.onChangeInput = this.onChangeInput.bind(this);
     this.ontest = this.ontest.bind(this);
   }
@@ -37,7 +36,7 @@ class App extends React.Component {
         <Formsy.Form
           ref="hello"
         >
-          <InputTextBox
+          <InputTextbox
             name="name"
             defaultValue="uuu"
             ref={(c) => { this.nameRef = c; }}
@@ -52,6 +51,7 @@ class App extends React.Component {
             required
             inline
           />
+          ohooooo
           <button onClick={this.ontest}>Submit</button>
         </Formsy.Form>
       </div>

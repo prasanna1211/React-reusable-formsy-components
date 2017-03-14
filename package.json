@@ -4,9 +4,10 @@
   "description": "Reusable formsy components that bounds with formsy",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --hot --inline --content-base ./examples --port 3000",
-    "lint": "eslint ./ --ext .jsx --ext .js",
-    "test": "mocha ./tests/**.js"
+    "start": "webpack-dev-server --hot --inline --content-base ./examples --port 3000",
+    "lint": "eslint ./lib/ --ext .jsx --ext .js",
+    "test": "mocha ./tests/**.js",
+    "prepublish": "babel ./lib/ --out-dir ./dist/ --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
   },
   "author": "prasanna",
   "license": "ISC",
