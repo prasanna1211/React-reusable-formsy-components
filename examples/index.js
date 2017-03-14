@@ -51,7 +51,7 @@ class App extends React.Component {
             required
             inline
           />
-          ohooooo
+          ohoooooasd
           <button onClick={this.ontest}>Submit</button>
         </Formsy.Form>
       </div>
