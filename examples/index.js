@@ -5,7 +5,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 import { render } from 'react-dom';
-import { InputTextbox } from '../dist/main.js';
+import { InputText, InputSelect } from '../lib/main.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,18 +15,30 @@ class App extends React.Component {
       passThroughValue: 'not changed',
       canSubmit: false,
     };
+    this.selectOptions=[
+      { name: 'option1', value: '1'},
+      { name: 'option2', value: '2@gmail.com'},
+      { name: 'option3', value: '3'},
+    ]
     this.onChangeInput = this.onChangeInput.bind(this);
     this.ontest = this.ontest.bind(this);
   }
 
+  componentDidMount() {
+    if (this.refs.hello.getModel().select1 != 'selectOption') {
+      this.setState({
+        canSubmit: true,
+      });
+    }
+  }
+
   onChangeInput() {
-    setTimeout(() => {
-      console.log(' reached calback ', this.nameRef.getValue());
-    }, 50);
+
   }
 
   ontest() {
-    console.log(' form values ', this.refs.hello.getModel());
+    console.log('form values ', this.refs.hello.getModel());
+    console.log(' form values ', this.refs.hello.reset());
   }
 
   render() {
@@ -34,25 +46,20 @@ class App extends React.Component {
       <div>
         <Formsy.Form
           ref="hello"
+          onChange={this.onChangeForm}
           noValidate
         >
-          <InputTextbox
-            name="name"
-            defaultValue="uuu"
-            ref={(c) => { this.nameRef = c; }}
-            value="aio"
-            wrapperClass="parent-class"
-            fieldClass="child-class"
+          <InputSelect
+            name="select1"
+            options={this.selectOptions}
             onChangeInput={this.onChangeInput}
-            wrapperStyle={this.wrapperStyle}
-            fieldStyle={this.fieldStyle}
-            validations="isEmail"
-            validationError="Not a valid email"
+            validations="changeRequired"
+            validationError="Change is required"
             required
             inline
+            disableDefaultTextOnSelect={true}
           />
-          ohoooooasd
-          <button onClick={this.ontest}>Submit</button>
+          <button disabled={!this.state.canSubmit} onClick={this.ontest}>Submit</button>
         </Formsy.Form>
       </div>
     );
