@@ -12,33 +12,32 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      passThroughValue: 'not changed',
-      canSubmit: false,
-    };
-    this.cbOptions=[
-      { name: 'option1', value: '1', displayName: 'option1'},
-      { name: 'option2', value: '2@gmail.com', displayName: 'option2'},
-      { name: 'option3', value: '3', displayName: 'option3'},
-    ]
-    this.onChangeInput = this.onChangeInput.bind(this);
-    this.ontest = this.ontest.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.refs.hello.getModel().select1 != 'selectOption') {
-      this.setState({
-        canSubmit: true,
-      });
+      canSubmit: true,
     }
+    this.onChangeInput = this.onChangeInput.bind(this);
+    this.onReset = this.onReset.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.selectBoxOptions = [
+      { name: "option1", value: "1" },
+      { name: "option2", value: "2" }
+    ];
+    this.radioButtonGroupOptions = [
+      { name: "option1", value: "1", displayName: "1" },
+      { name: "option2", value: "2", displayName: "2" }
+    ];
   }
 
   onChangeInput() {
 
   }
 
-  ontest() {
-    console.log('form values ', this.refs.hello.getModel());
-    console.log(' form values ', this.refs.hello.reset());
+  onReset() {
+    this.refs.hello.reset('resetting ', this.refs.hello.reset());
+    console.log("Resetting the form ", this.refs.hello.getModel());
+  }
+
+  onSubmit() {
+    console.log('submitting ', this.refs.hello.getModel());
   }
 
   render() {
@@ -49,13 +48,34 @@ class App extends React.Component {
           onChange={this.onChangeForm}
           noValidate
         >
+          <InputText
+            name="inputText"
+            validations="isEmail"
+            validationError="Not a valid"
+          />
+          <InputSelect
+            name="inputSelect"
+            options={this.selectBoxOptions}
+            value="2"
+          />
+          <InputCheck
+            name="inputCheck"
+            displayName="input check"
+          />
           <InputRadioButtonGroup
-            name="radio1"
-            options={this.cbOptions}
+            name="inputRadio"
+            options={this.radioButtonGroupOptions}
+            value="2"
+          />
+          <input
+            type="button"
+            value="clear"
+            onClick={this.onReset}
           />
           <button
+            type="submit"
             disabled={!this.state.canSubmit}
-            onClick={this.ontest}
+            onClick={this.onSubmit}
           >
             Submit
           </button>
