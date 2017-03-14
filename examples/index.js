@@ -26,8 +26,7 @@ class App extends React.Component {
   }
 
   ontest() {
-    console.log(' resettubg form ');
-    this.refs.hello.reset();
+    console.log(' form values ', this.refs.hello.getModel());
   }
 
   render() {
@@ -35,6 +34,7 @@ class App extends React.Component {
       <div>
         <Formsy.Form
           ref="hello"
+          noValidate
         >
           <InputTextbox
             name="name"
