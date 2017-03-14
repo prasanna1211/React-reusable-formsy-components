@@ -14,6 +14,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _pickReactKnownProp = require('pick-react-known-prop');
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,26 +30,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
-var InputTextBox = function (_React$Component) {
-  _inherits(InputTextBox, _React$Component);
+var InputSelectBox = function (_React$Component) {
+  _inherits(InputSelectBox, _React$Component);
 
-  function InputTextBox(props) {
-    _classCallCheck(this, InputTextBox);
+  function InputSelectBox(props) {
+    _classCallCheck(this, InputSelectBox);
 
-    var _this = _possibleConstructorReturn(this, (InputTextBox.__proto__ || Object.getPrototypeOf(InputTextBox)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (InputSelectBox.__proto__ || Object.getPrototypeOf(InputSelectBox)).call(this, props));
 
     _this.state = {
       value: props.value
     };
 
-    _this.onChangeInput = _this.onChangeInput.bind(_this);
+    _this.onChangeSelect = _this.onChangeSelect.bind(_this);
     return _this;
   }
 
   // Setting the default value
 
 
-  _createClass(InputTextBox, [{
+  _createClass(InputSelectBox, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.setValue(this.props.value);
@@ -75,11 +79,11 @@ var InputTextBox = function (_React$Component) {
       }
     }
 
-    // On typing, change the state
+    // On changing sleect, change the state
 
   }, {
-    key: 'onChangeInput',
-    value: function onChangeInput(event) {
+    key: 'onChangeSelect',
+    value: function onChangeSelect(event) {
       this.setState({
         value: event.target.value
       });
@@ -87,6 +91,8 @@ var InputTextBox = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       // inline or block based on the props
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
@@ -95,16 +101,37 @@ var InputTextBox = function (_React$Component) {
           className: this.props.wrapperClass,
           style: this.props.wrapperStyle
         },
-        _react2.default.createElement('input', _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
-          type: 'text',
-          ref: this.props.ref,
-          className: this.props.fieldClass,
-          name: this.props.name,
-          value: this.props.getValue(),
-          onChange: this.onChangeInput,
-          required: this.props.required,
-          style: this.props.fieldStyle
-        })),
+        _react2.default.createElement(
+          'select',
+          _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
+            className: this.props.selectClass,
+            ref: this.props.ref,
+            name: this.props.name,
+            value: this.props.getValue(),
+            onChange: this.onChangeSelect,
+            required: this.props.required
+          }),
+          _react2.default.createElement(
+            'option',
+            {
+              key: 'selectOption',
+              value: 'selectOption0000',
+              disabled: this.props.disableDefaultTextOnSelect
+            },
+            this.props.defaultText
+          ),
+          _underscore2.default.map(this.props.options, function (optionData) {
+            return _react2.default.createElement(
+              'option',
+              {
+                key: optionData.value,
+                value: optionData.value,
+                className: _this2.props.optionClass
+              },
+              optionData.name
+            );
+          })
+        ),
         _react2.default.createElement(
           'div',
           { className: 'error-message', style: errorMessageStyle },
@@ -114,39 +141,42 @@ var InputTextBox = function (_React$Component) {
     }
   }]);
 
-  return InputTextBox;
+  return InputSelectBox;
 }(_react2.default.Component);
 
-InputTextBox.propTypes = {
-  name: _react2.default.PropTypes.string.isRequired,
-  value: _react2.default.PropTypes.any,
+InputSelectBox.propTypes = {
+  options: _react2.default.PropTypes.array.isRequired,
   wrapperClass: _react2.default.PropTypes.string,
-  fieldClass: _react2.default.PropTypes.string,
-  onChangeInput: _react2.default.PropTypes.func,
-  required: _react2.default.PropTypes.bool,
-  setValue: _react2.default.PropTypes.func.isRequired,
-  wrapperStyle: _react2.default.PropTypes.object,
-  fieldStyle: _react2.default.PropTypes.object,
-  inline: _react2.default.PropTypes.bool,
+  wrapperStyle: _react2.default.PropTypes.string,
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
+  getValue: _react2.default.PropTypes.func.isRequired,
+  value: _react2.default.PropTypes.any,
+  setValue: _react2.default.PropTypes.func.isRequired,
+  onChangeInput: _react2.default.PropTypes.func,
+  inline: _react2.default.PropTypes.bool,
   ref: _react2.default.PropTypes.string,
-  getValue: _react2.default.PropTypes.func.isRequired
+  name: _react2.default.PropTypes.string.isRequired,
+  required: _react2.default.PropTypes.bool,
+  disableDefaultTextOnSelect: _react2.default.PropTypes.bool,
+  defaultText: _react2.default.PropTypes.string,
+  selectClass: _react2.default.PropTypes.string,
+  optionClass: _react2.default.PropTypes.string
 };
 
-InputTextBox.defaultProps = {
-  value: undefined,
-  wrapperClass: '',
-  fieldClass: '',
-  onChangeInput: function onChangeInput() {},
-  validations: undefined,
-  required: undefined,
+InputSelectBox.defaultProps = {
+  wrapperClass: undefined,
   wrapperStyle: undefined,
-  fieldStyle: undefined,
+  value: 'selectOption',
+  onChangeInput: function onChangeInput() {},
   inline: undefined,
-  validationError: undefined,
-  ref: ''
+  ref: undefined,
+  disableDefaultTextOnSelect: true,
+  required: undefined,
+  defaultText: 'Select An Option',
+  selectClass: '',
+  optionClass: ''
 };
 
-exports.default = InputTextBox;
+exports.default = InputSelectBox;
 module.exports = exports['default'];
 //# sourceMappingURL=InputSelectBox.js.map

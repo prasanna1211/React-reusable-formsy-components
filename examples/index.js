@@ -57,9 +57,13 @@ class App extends React.Component {
             validationError="Change is required"
             required
             inline
-            disableDefaultTextOnSelect={true}
           />
-          <button disabled={!this.state.canSubmit} onClick={this.ontest}>Submit</button>
+          <button
+            disabled={!this.state.canSubmit}
+            onClick={this.ontest}
+          >
+            Submit
+          </button>
         </Formsy.Form>
       </div>
     );
