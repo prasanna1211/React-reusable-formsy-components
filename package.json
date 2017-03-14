@@ -2,7 +2,7 @@
   "name": "reusable-formsy-components",
   "version": "1.0.1",
   "description": "Reusable formsy components that bounds with formsy",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline --content-base ./examples --port 3000",
     "lint": "eslint ./lib/ --ext .jsx --ext .js",
