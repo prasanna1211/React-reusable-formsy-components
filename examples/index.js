@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   onReset() {
-    this.refs.hello.reset('resetting ', this.refs.hello.reset());
+    this.refs.hello.reset();
     console.log("Resetting the form ", this.refs.hello.getModel());
   }
 

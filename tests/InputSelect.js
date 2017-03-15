@@ -21,79 +21,130 @@ describe('<InputSelect /> component shallow tests', () => {
       {
         name: 'option2',
         value: '2',
-      }
+      },
     ],
   };
 
   it('renders everything correctly', () => {
     const wrapper = shallow(<InputSelect {...baseProps} />);
     expect(wrapper.find('select').exists()).to.equal(true);
-    expect(wrapper.find('option')).to.have.length(2+1);
+    expect(wrapper.find('option')).to.have.length(2 + 1);
   });
 
   it('passes props to wrapper div correctly', () => {
     const newProps = Object.assign(baseProps, {
-      wrapperClass: React.PropTypes.string,
-      wrapperStyle: React.PropTypes.string,
+      wrapperClass: 'wrapperClass',
+      wrapperStyle: {
+        display: 'inline',
+      },
     });
-    const wrapper = shallow(<InputSelect {...baseProps} />);
-
-    expect(true);
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('div').at(0).hasClass('wrapperClass')).to.equal(true);
+    expect(wrapper.find('div').at(0).props().style).to.deep.equal({
+      display: 'inline',
+    });
   });
 
   it('passes props to select tag correctly', () => {
     const newProps = Object.assign(baseProps, {
-      onChangeInput: React.PropTypes.func,
-      name: React.PropTypes.string.isRequired,
-      required: React.PropTypes.bool,
-      selectClass: React.PropTypes.string,
+      onChangeInput: () => {},
+      name: 'default',
+      required: true,
+      selectClass: 'selectClass',
     });
-    const wrapper = shallow(<InputSelect {...baseProps} />);
-    expect(true);
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('select').props().name).to.equal('default');
+    expect(wrapper.find('select').props().required).to.equal(true);
+    expect(wrapper.find('select').hasClass('selectClass')).to.equal(true);
   });
 
   it('passes props to option tag correctly', () => {
     const newProps = Object.assign(baseProps, {
-      value: React.PropTypes.any,
-      optionClass: React.PropTypes.string,
+      optionClass: 'optionClass',
     });
-    const wrapper = shallow(<InputSelect {...baseProps} />);
-
-    expect(true);
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('option').at(1).hasClass('optionClass')).to.equal(true);
   });
 
   it('passes props to error message div correctly', () => {
     const newProps = Object.assign(baseProps, {
-      errorClass: React.PropTypes.string,
-      inline: React.PropTypes.bool,
+      errorClass: 'errorClass',
     });
-    const wrapper = shallow(<InputSelect {...baseProps} />);
-
-    expect(true);
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('div').at(1).hasClass('errorClass')).to.equal(true);
   });
 
   it('displays the error message inline or block correctly', () => {
     const newProps = Object.assign(baseProps, {
-      errorClass: React.PropTypes.string,
-      inline: React.PropTypes.bool,
+      inline: true,
     });
-    const wrapper = shallow(<InputSelect {...baseProps} />);
-
-    expect(true);
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('div').at(1).props().style).to.deep.equal({
+      display: 'inline-block',
+    });
   });
 
+  it('hides select option defaultText on default and unhides when required', () => {
+    const newProps = Object.assign(baseProps, {
+      optionClass: 'optionClass',
+    });
+    const wrapper = shallow(<InputSelect {...newProps} />);
+    expect(wrapper.find('option').at(0).props().disabled).to.deep.equal(true);
+    wrapper.setProps({
+      disableDefaultTextOnSelect: false,
+    });
+    expect(wrapper.find('option').at(0).props().disabled).to.deep.equal(false);
+  });
 });
 
 describe('<InputSelect /> component full DOM tests', () => {
+  const baseProps = {
+    name: 'initial',
+    getValue: () => {},
+    setValue: () => {},
+    getErrorMessage: () => {},
+    options: [
+      {
+        name: 'option1',
+        value: '1',
+      },
+      {
+        name: 'option2',
+        value: '2',
+      },
+    ],
+  };
   it('on recieving new props for value, setState is called ', () => {
-    expect(true);
+    const newProps = Object.assign(baseProps, {
+      value: '1',
+    });
+    const wrapper = mount(<InputSelect {...newProps} />);
+    const setState = spy(InputSelect.prototype, 'setState');
+    wrapper.setProps({
+      value: '2',
+    });
+    expect(setState.calledOnce).to.equal(true);
+    wrapper.setProps({
+      value: '3',
+    });
+    expect(setState.calledTwice).to.equal(true);
   });
 
   it('on setting state for value, props.setValue() and props.onChange() is called', () => {
-    expect(true);
-  });
-
-  it('on selecting a new item ', () => {
-    expect(true);
+    const newProps = Object.assign(baseProps, {
+      setValue: spy(),
+      onChangeInput: spy(),
+    });
+    const wrapper = mount(<InputSelect {...newProps} />);
+    wrapper.setState({
+      value: '2',
+    });
+    expect(newProps.setValue.calledTwice).to.equal(true);
+    expect(newProps.onChangeInput.calledOnce).to.equal(true);
+    wrapper.setState({
+      value: '3',
+    });
+    expect(newProps.setValue.calledThrice).to.equal(true);
+    expect(newProps.onChangeInput.calledTwice).to.equal(true);
   });
 });
