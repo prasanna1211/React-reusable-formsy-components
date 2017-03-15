@@ -1,6 +1,5 @@
 /* global it, describe, beforeEach */
 import React from 'react';
-import _ from 'underscore';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
@@ -32,7 +31,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('passes the props correctly to input', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       value: 'sampleValue',           // won't have any effect since getValue() retrives the value
       fieldClass: 'fieldClass',
       required: true,
@@ -45,7 +44,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('passes the props correctly to wrapper div', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       wrapperClass: 'wrapperClass',
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -53,7 +52,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('passes the props correctly to the error message div', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       errorClass: 'errorClass',
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -61,7 +60,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('displays the error message inline or block correctly', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       inline: true,
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -74,7 +73,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('inline styles for wrapper div works as expected', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       wrapperStyle: { display: 'inline-block' },
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -82,7 +81,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('inline styles for <input /> works as expected', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       fieldStyle: { display: 'inline-block' },
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -90,7 +89,7 @@ describe(' <InputText /> component shallow Tests', () => {
   });
 
   it('inline styles for error <div /> works as expected', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       wrapperStyle: { display: 'inline-block' },
     });
     const newWrapper = shallow(<InputText {...newProps} />);
@@ -107,7 +106,7 @@ describe('<InputText /> Component Full DOM tests', () => {
   };
 
   it('on recieving new props for value, setState is called ', () => {
-    const newProps = _.extend(baseProps, {
+    const newProps = Object.assign(baseProps, {
       value: '1',
     });
     const wrapper = mount(<InputText {...newProps} />);
@@ -123,10 +122,7 @@ describe('<InputText /> Component Full DOM tests', () => {
   });
 
   it('on setting state for value, props.setValue() and props.onChange() is called', () => {
-    const newProps = Object.assign({
-      name: 'initial',
-      getValue: () => {},
-      getErrorMessage: () => {},
+    const newProps = Object.assign(baseProps, {
       setValue: spy(),
       onChangeInput: spy(),
     });
