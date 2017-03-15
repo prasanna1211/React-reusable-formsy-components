@@ -56,5 +56,21 @@
     "react-dom": "^15.4.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prasanna1211/React-reusable-formsy-components.git"
+  },
+  "keywords": [
+    "react",
+    "formsy"
+  ],
+  "bugs": {
+    "url": "https://github.com/prasanna1211/React-reusable-formsy-components/issues"
+  },
+  "homepage": "https://github.com/prasanna1211/React-reusable-formsy-components#readme"
 }

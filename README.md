@@ -6,7 +6,7 @@ A simple library for form elements which can be used with react formsy library.
 Currently contains:
 1. Input text
 2. Select box
-3. Check box 
+3. Check box
 4. Radio buttonShow what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## Motivation
@@ -21,7 +21,15 @@ A simple reusable component which can be used for following cases.
 ```Javascript
 // Import the necessary HOC wrapped components
 import { InputText, InputSelect, InputCheck, InputRadioButtonGroup } from reusable-formsy-components;
+this.selectBoxOptions = [
+      { name: "option1", value: "1" },
+      { name: "option2", value: "2" }
+    ];
 
+this.radioButtonGroupOptions = [
+      { name: "option1", value: "1", displayName: "1" },
+      { name: "option2", value: "2", displayName: "2" }
+];
 // in the render function of the component declare a fo
 <Formsy.Form
   ref="hello"
@@ -36,27 +44,27 @@ import { InputText, InputSelect, InputCheck, InputRadioButtonGroup } from reusab
     validations="isEmail"
     validationError="Not a valid"
   />
-  
+
   // you can pass in a value. It can be a default value or changing over time. The component state will update itself based on the passed in value
   <InputSelect
     name="inputSelect"Will be included in the next version which will be by 17/02/2017.
     options={this.selectBoxOptions}
     value="2"
   />
-  
+
   // Currently it supports input check box and not checkbox group
   <InputCheck
     name="inputCheck"
     displayName="input check"
   />
-  
+
   // values can be passed to radio buttons too
   <InputRadioButtonGroup
     name="inputRadio"
     options={this.radioButtonGroupOptions}
     value="2"
   />
-  
+
    // Resetting the form, resets all form elements to pristine values ( Provided you pass in a value at the time of mounting the component else it won't reset)
   <input
     type="button"
@@ -64,7 +72,7 @@ import { InputText, InputSelect, InputCheck, InputRadioButtonGroup } from reusab
     onClick={this.onReset}
   />
 
-  // Submitting the form  
+  // Submitting the form
   <button
     type="submit"
     disabled={!this.state.canSubmit}
@@ -93,7 +101,7 @@ npm i reusable-formsy-components
 | wrapperClass | string | optional | css class for the wrapper div |,
 | fieldClass | string | optional | css class for the input element,
 | onChangeInput | func | optional | callback to the parent component based on user interaction|,
-| required | bool | optional | specifies whether form requires this to be valid |, 
+| required | bool | optional | specifies whether form requires this to be valid |,
 | wrapperStyle | object | optional | Set inline style for wrapper div |,
 | fieldStyle | object | optional | Set inline style for input element |,
 | inline | bool | optional | Display error message inline or block |,
@@ -110,7 +118,7 @@ npm i reusable-formsy-components
 | selectClass | string | optional | css class for the select element,
 | optionClass | string | optional | css class for the option element,
 | onChangeInput | func | optional | callback to the parent component based on user interaction|,
-| required | bool | optional | specifies whether form requires this to be valid |, 
+| required | bool | optional | specifies whether form requires this to be valid |,
 | inline | bool | optional | Display error message inline or block |,
 | ref | string | optional | Passing refs for accessing |,
 
@@ -124,7 +132,7 @@ npm i reusable-formsy-components
 | selectClass | string | optional | css class for the select element,
 | optionClass | string | optional | css class for the option element,
 | onChangeInput | func | optional | callback to the parent component based on user interaction|,
-| required | bool | optional | specifies whether form requires this to be valid |, 
+| required | bool | optional | specifies whether form requires this to be valid |,
 | inline | bool | optional | Display error message inline or block |,
 | ref | string | optional | Passing refs for accessing |,
 
@@ -138,7 +146,7 @@ npm i reusable-formsy-components
 | selectClass | string | optional | css class for the select element,
 | optionClass | string | optional | css class for the option element,
 | onChangeInput | func | optional | callback to the parent component based on user interaction|,
-| required | bool | optional | specifies whether form requires this to be valid |, 
+| required | bool | optional | specifies whether form requires this to be valid |,
 | inline | bool | optional | Display error message inline or block |,
 | ref | string | optional | Passing refs for accessing |,
 ## Tests
