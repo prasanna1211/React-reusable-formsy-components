@@ -1,11 +1,15 @@
 /* global it, describe, beforeEach */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import _ from 'underscore';
+import { spy } from 'sinon';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import 'jsdom-global/register';
+import { shallow, mount } from 'enzyme';
 import InputText from '../lib/InputTextBox.js';
+import { TestComponent } from '../lib/InputTextBox.js';
 
-describe(' <InputText /> component', () => {
+describe(' <InputText /> component shallow Tests', () => {
   const baseProps = {
     name: 'initial',
     getValue: () => {},
@@ -43,47 +47,103 @@ describe(' <InputText /> component', () => {
   });
 
   it('passes the props correctly to wrapper div', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      wrapperClass: 'wrapperClass',
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('div').at(0).hasClass('wrapperClass')).to.equal(true);
   });
 
   it('passes the props correctly to the error message div', () => {
-    expect(true);
-  });
-
-  it('value is set based on getValue() function from formsy', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      errorClass: 'errorClass',
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('div').at(1).hasClass('errorClass')).to.equal(true);
   });
 
   it('displays the error message inline or block correctly', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      inline: true,
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('div').at(1).props().style).to.deep.equal({ display: 'inline-block' });
   });
 
   it('passes any native DOM Props', () => {
+    // todo
     expect(true);
   });
 
   it('inline styles for wrapper div works as expected', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      wrapperStyle: { display: 'inline-block' },
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('div').at(0).props().style).to.deep.equal({ display: 'inline-block' });
   });
 
   it('inline styles for <input /> works as expected', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      fieldStyle: { display: 'inline-block' },
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('input').at(0).props().style).to.deep.equal({ display: 'inline-block' });
   });
 
   it('inline styles for error <div /> works as expected', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      wrapperStyle: { display: 'inline-block' },
+    });
+    const newWrapper = shallow(<InputText {...newProps} />);
+    expect(newWrapper.find('div').at(1).props().style).to.deep.equal({ display: 'inline-block' });
   });
+});
 
-  // Full DOM render tests
+describe('<InputText /> Component Full DOM tests', () => {
+  const baseProps = {
+    name: 'initial',
+    getValue: () => {},
+    setValue: () => {},
+    getErrorMessage: () => {},
+  };
+
   it('on recieving new props for value, setState is called ', () => {
-    expect(true);
+    const newProps = _.extend(baseProps, {
+      value: '1',
+    });
+    const wrapper = mount(<InputText {...newProps} />);
+    const setState = spy(InputText.prototype, 'setState');
+    wrapper.setProps({
+      value: '2',
+    });
+    expect(setState.calledOnce).to.equal(true);
+    wrapper.setProps({
+      value: '3',
+    });
+    expect(setState.calledTwice).to.equal(true);
   });
 
   it('on setting state for value, props.setValue() and props.onChange() is called', () => {
-    expect(true);
-  });
-
-  it('on simulating user typing onChangeInput() is called', () => {
-    expect(true);
+    const newProps = Object.assign({
+        name: 'initial',
+        getValue: () => {},
+        getErrorMessage: () => {},
+        setValue: spy(),
+        onChangeInput: spy(),
+    });
+    const wrapper = mount(<InputText {...newProps} />);
+    // console.log(' call count 1 ', newPropss.setValue.callCount);
+    wrapper.setState({
+      value: '2'
+    });
+    expect(newProps.setValue.calledTwice).to.equal(true);
+    expect(newProps.onChangeInput.calledOnce).to.equal(true);
+    wrapper.setState({
+      value: '3'
+    });
+    expect(newProps.setValue.calledThrice).to.equal(true);
+    expect(newProps.onChangeInput.calledTwice).to.equal(true);
   });
 });
+
