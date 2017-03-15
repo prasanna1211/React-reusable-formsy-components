@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --hot --inline --content-base ./examples --port 3000",
     "lint": "eslint ./lib/ --ext .jsx --ext .js",
     "test": "mocha ./tests/**.js",
+    "test": "NODE_PATH=./ mocha tests/**.js --compilers js:babel-core/register",
     "prepublish": "babel ./lib/ --out-dir ./dist/ --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
   },
   "author": "prasanna",
