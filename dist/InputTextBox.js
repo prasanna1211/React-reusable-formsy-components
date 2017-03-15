@@ -35,7 +35,7 @@ var InputTextBox = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (InputTextBox.__proto__ || Object.getPrototypeOf(InputTextBox)).call(this, props));
 
     _this.state = {
-      value: props.value
+      value: _this.props.value
     };
 
     _this.onChangeInput = _this.onChangeInput.bind(_this);
@@ -80,6 +80,7 @@ var InputTextBox = function (_React$Component) {
   }, {
     key: 'onChangeInput',
     value: function onChangeInput(event) {
+      console.log(' came into onchange ');
       this.setState({
         value: event.target.value
       });
@@ -107,7 +108,7 @@ var InputTextBox = function (_React$Component) {
         })),
         _react2.default.createElement(
           'div',
-          { className: 'error-message', style: errorMessageStyle },
+          { className: this.props.errorClass, style: errorMessageStyle },
           this.props.getErrorMessage()
         )
       );
@@ -122,6 +123,7 @@ InputTextBox.propTypes = {
   value: _react2.default.PropTypes.any,
   wrapperClass: _react2.default.PropTypes.string,
   fieldClass: _react2.default.PropTypes.string,
+  errorClass: _react2.default.PropTypes.string,
   onChangeInput: _react2.default.PropTypes.func,
   required: _react2.default.PropTypes.bool,
   setValue: _react2.default.PropTypes.func.isRequired,
@@ -144,7 +146,8 @@ InputTextBox.defaultProps = {
   fieldStyle: undefined,
   inline: undefined,
   validationError: undefined,
-  ref: ''
+  ref: '',
+  errorClass: undefined
 };
 
 exports.default = InputTextBox;
