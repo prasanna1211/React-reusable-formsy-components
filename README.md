@@ -7,15 +7,16 @@ Currently contains:
 1. Input text
 2. Select box
 3. Check box
-4. Radio buttonShow what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+4. Radio button
 
 ## Motivation
 
 A simple reusable component which can be used for following cases.
-1. A basic form element
+1. A basic form element.
 2. Controlling the actual value through props from parent.
 3. Component itself has its own state which interacts with parent component and formsy and keeps its value updated, ie. the component state will update based on the value props. Also it can respond to user interactions.
 4. Supports all synthetic events as callback (through props) which can be passed to the native HTML element.
+5. Show Error message for validations either inline or block.
 
 ## Code Example
 ```Javascript
