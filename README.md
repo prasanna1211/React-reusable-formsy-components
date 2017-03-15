@@ -21,15 +21,19 @@ A simple reusable component which can be used for following cases.
 ```Javascript
 // Import the necessary HOC wrapped components
 import { InputText, InputSelect, InputCheck, InputRadioButtonGroup } from reusable-formsy-components;
+
+// Pass this as props to selectbox. It will render based on the name and value.
 this.selectBoxOptions = [
       { name: "option1", value: "1" },
       { name: "option2", value: "2" }
     ];
 
+// Pass this as props to radio buttons.
 this.radioButtonGroupOptions = [
       { name: "option1", value: "1", displayName: "1" },
       { name: "option2", value: "2", displayName: "2" }
 ];
+
 // in the render function of the component declare a fo
 <Formsy.Form
   ref="hello"
@@ -149,6 +153,7 @@ npm i reusable-formsy-components
 | required | bool | optional | specifies whether form requires this to be valid |,
 | inline | bool | optional | Display error message inline or block |,
 | ref | string | optional | Passing refs for accessing |,
+
 ## Tests
 
 Tests will be included in first stable release.
@@ -158,4 +163,4 @@ The whole aim is to keep it simple and more generic. Feel free to suggest improv
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+MIT License
