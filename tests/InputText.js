@@ -1,13 +1,11 @@
 /* global it, describe, beforeEach */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import _ from 'underscore';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
 import InputText from '../lib/InputTextBox.js';
-import { TestComponent } from '../lib/InputTextBox.js';
 
 describe(' <InputText /> component shallow Tests', () => {
   const baseProps = {
@@ -126,21 +124,20 @@ describe('<InputText /> Component Full DOM tests', () => {
 
   it('on setting state for value, props.setValue() and props.onChange() is called', () => {
     const newProps = Object.assign({
-        name: 'initial',
-        getValue: () => {},
-        getErrorMessage: () => {},
-        setValue: spy(),
-        onChangeInput: spy(),
+      name: 'initial',
+      getValue: () => {},
+      getErrorMessage: () => {},
+      setValue: spy(),
+      onChangeInput: spy(),
     });
     const wrapper = mount(<InputText {...newProps} />);
-    // console.log(' call count 1 ', newPropss.setValue.callCount);
     wrapper.setState({
-      value: '2'
+      value: '2',
     });
     expect(newProps.setValue.calledTwice).to.equal(true);
     expect(newProps.onChangeInput.calledOnce).to.equal(true);
     wrapper.setState({
-      value: '3'
+      value: '3',
     });
     expect(newProps.setValue.calledThrice).to.equal(true);
     expect(newProps.onChangeInput.calledTwice).to.equal(true);
