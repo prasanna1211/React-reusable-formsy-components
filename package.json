@@ -21,6 +21,7 @@
     "css-loader": "^0.25.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.6.3",
+    "immutable": "^3.8.1",
     "jsdom-global": "^2.1.1",
     "node-sass": "^3.4.2",
     "pick-react-known-prop": "^0.1.0",

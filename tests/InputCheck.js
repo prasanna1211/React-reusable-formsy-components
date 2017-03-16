@@ -90,6 +90,7 @@ describe(' <InputCheckBox /> component shallow Tests ', () => {
 describe(' <InputCheckBox /> component full DOM Tests ', () => {
   const baseProps = {
     name: 'initial',
+    displayName: 'displayName',
     getValue: () => {},
     setValue: () => {},
     getErrorMessage: () => {},
