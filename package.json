@@ -25,6 +25,7 @@
     "jsdom-global": "^2.1.1",
     "node-sass": "^3.4.2",
     "pick-react-known-prop": "^0.1.0",
+    "react-select": "^1.0.0-rc.3",
     "sass-loader": "^4.0.2",
     "sinon": "^2.0.0",
     "style-loader": "^0.13.1",

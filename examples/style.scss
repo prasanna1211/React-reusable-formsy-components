@@ -1,0 +1,11 @@
+.react-select {
+  box-shadow: 0px 0px 15px 2px #ccc;
+}
+
+.select-options-custom:not:first-child:hover {
+  background: #ccc;
+}
+
+.is-selected {
+  background-color: white;
+}

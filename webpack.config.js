@@ -38,6 +38,7 @@ const config = {
         exclude: /node_modules/,
         loaders: ['babel-loader'],
       },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
       {
         test: /\.scss$/,
         include: APP_DIR,
