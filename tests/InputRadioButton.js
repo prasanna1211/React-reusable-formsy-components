@@ -4,8 +4,9 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
-import InputRadioButton from '../lib/InputRadioButton.js';
 import Immutable from 'immutable';
+import InputRadioButton from '../lib/InputRadioButton.js';
+
 
 describe('<InputRadioButton /> Component', () => {
   const baseProps = {
@@ -16,14 +17,14 @@ describe('<InputRadioButton /> Component', () => {
     displayName: 'displayName',
     options: [
       { name: 'option1', value: 1, displayName: 'opt1' },
-      { name: 'option2', value: 2, displayName: 'opt2' }
+      { name: 'option2', value: 2, displayName: 'opt2' },
     ],
   };
 
   it(' renders input[type="radio"] correctly ', () => {
     let newProps = Immutable.Map(baseProps);
     newProps = newProps.toJS();
-    const wrapper = shallow(<InputRadioButton {...newProps}/>);
+    const wrapper = shallow(<InputRadioButton {...newProps} />);
     expect(wrapper.find('input').exists()).to.equal(true);
   });
 
@@ -42,7 +43,7 @@ describe('<InputRadioButton /> Component', () => {
     newProps = newProps.set('required', true);
     newProps = newProps.toJS();
 
-    const wrapper = shallow(<InputRadioButton {...newProps} />)
+    const wrapper = shallow(<InputRadioButton {...newProps} />);
     const inputWrapper = wrapper.find('input').at(0);
 
     expect(inputWrapper.hasClass('fieldClass')).to.equal(true);
@@ -103,7 +104,6 @@ describe('<InputRadioButton /> Component', () => {
     newProps = newProps.toJS();
 
     const newWrapper = shallow(<InputRadioButton {...newProps} />);
-    console.log
     expect(newWrapper.find('div').at(1).props().style).to.deep.equal({ display: 'inline-block' });
   });
 });
@@ -117,7 +117,7 @@ describe('<InputRadioButton /> Component', () => {
     displayName: 'displayName',
     options: [
       { name: 'option1', value: 1, displayName: 'opt1' },
-      { name: 'option2', value: 2, displayName: 'opt2' }
+      { name: 'option2', value: 2, displayName: 'opt2' },
     ],
   };
 

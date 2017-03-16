@@ -157,7 +157,7 @@ npm i reusable-formsy-components
 
 ## Tests
 
-Tests will be included in first stable release.
+Download the repository. run npm test
 
 ## Contributors
 The whole aim is to keep it simple and more generic. Feel free to suggest improvements.

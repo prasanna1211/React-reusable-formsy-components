@@ -27,8 +27,8 @@ class App extends React.Component {
     ];
   }
 
-  onChangeInput() {
-
+  onChangeInput(value) {
+    console.log(' changed value ', value);
   }
 
   onReset() {
@@ -52,20 +52,24 @@ class App extends React.Component {
             name="inputText"
             validations="isEmail"
             validationError="Not a valid"
+            onChangeInput={this.onChangeInput}
           />
           <InputSelect
             name="inputSelect"
             options={this.selectBoxOptions}
             value="2"
+            onChangeInput={this.onChangeInput}
           />
           <InputCheck
             name="inputCheck"
             displayName="input check"
+            onChangeInput={this.onChangeInput}
           />
           <InputRadioButtonGroup
             name="inputRadio"
             options={this.radioButtonGroupOptions}
             value="2"
+            onChangeInput={this.onChangeInput}
           />
           <input
             type="button"
