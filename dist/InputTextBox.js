@@ -71,7 +71,7 @@ var InputTextBox = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput();
+        this.props.onChangeInput(this.state.value);
       }
     }
 
@@ -80,7 +80,6 @@ var InputTextBox = function (_React$Component) {
   }, {
     key: 'onChangeInput',
     value: function onChangeInput(event) {
-      console.log(' came into onchange ');
       this.setState({
         value: event.target.value
       });

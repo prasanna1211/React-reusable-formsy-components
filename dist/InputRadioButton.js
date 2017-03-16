@@ -76,7 +76,7 @@ var InputRadioButton = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput();
+        this.props.onChangeInput(this.state.value);
       }
     }
 
@@ -133,7 +133,7 @@ var InputRadioButton = function (_React$Component) {
         this.renderRadioButtons(this.props.options),
         _react2.default.createElement(
           'div',
-          { className: 'error-message', style: errorMessageStyle },
+          { className: this.props.errorClass, style: errorMessageStyle },
           this.props.getErrorMessage()
         )
       );
@@ -157,7 +157,9 @@ InputRadioButton.propTypes = {
   inline: _react2.default.PropTypes.bool,
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
   ref: _react2.default.PropTypes.string, //eslint-disable-line
-  getValue: _react2.default.PropTypes.func.isRequired };
+  getValue: _react2.default.PropTypes.func.isRequired, //eslint-disable-line
+  errorClass: _react2.default.PropTypes.string
+};
 
 InputRadioButton.defaultProps = {
   value: 'undefined',
@@ -170,7 +172,8 @@ InputRadioButton.defaultProps = {
   fieldStyle: undefined,
   inline: undefined,
   validationError: undefined,
-  ref: ''
+  ref: '',
+  errorClass: undefined
 };
 
 exports.default = InputRadioButton;

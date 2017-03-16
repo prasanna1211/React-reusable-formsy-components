@@ -71,7 +71,7 @@ var InputCheckBox = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput();
+        this.props.onChangeInput(this.state.value);
       }
     }
 
@@ -114,7 +114,7 @@ var InputCheckBox = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'error-message', style: errorMessageStyle },
+          { className: this.props.errorClass, style: errorMessageStyle },
           this.props.getErrorMessage()
         )
       );
@@ -138,7 +138,8 @@ InputCheckBox.propTypes = {
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
   ref: _react2.default.PropTypes.string,
   getValue: _react2.default.PropTypes.func.isRequired,
-  displayName: _react2.default.PropTypes.string.isRequired
+  displayName: _react2.default.PropTypes.string.isRequired,
+  errorClass: _react2.default.PropTypes.string
 };
 
 InputCheckBox.defaultProps = {
@@ -152,7 +153,8 @@ InputCheckBox.defaultProps = {
   fieldStyle: undefined,
   inline: undefined,
   validationError: undefined,
-  ref: ''
+  ref: '',
+  errorClass: undefined
 };
 
 exports.default = InputCheckBox;

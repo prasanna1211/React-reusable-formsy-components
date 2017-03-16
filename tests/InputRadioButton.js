@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
 import Immutable from 'immutable';
-import InputRadioButton from '../lib/InputRadioButton.js';
+import InputRadioButton from '../dist/InputRadioButton.js';
 
 
 describe('<InputRadioButton /> Component', () => {

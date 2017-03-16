@@ -75,7 +75,7 @@ var InputSelectBox = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput();
+        this.props.onChangeInput(this.state.value);
       }
     }
 
@@ -134,7 +134,7 @@ var InputSelectBox = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'error-message', style: errorMessageStyle },
+          { className: this.props.errorClass, style: errorMessageStyle },
           this.props.getErrorMessage()
         )
       );
@@ -147,7 +147,8 @@ var InputSelectBox = function (_React$Component) {
 InputSelectBox.propTypes = {
   options: _react2.default.PropTypes.array.isRequired,
   wrapperClass: _react2.default.PropTypes.string,
-  wrapperStyle: _react2.default.PropTypes.string,
+  errorClass: _react2.default.PropTypes.string,
+  wrapperStyle: _react2.default.PropTypes.object,
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
   getValue: _react2.default.PropTypes.func.isRequired,
   value: _react2.default.PropTypes.any,
@@ -166,6 +167,7 @@ InputSelectBox.propTypes = {
 InputSelectBox.defaultProps = {
   wrapperClass: undefined,
   wrapperStyle: undefined,
+  errorClass: undefined,
   value: 'selectOption',
   onChangeInput: function onChangeInput() {},
   inline: undefined,

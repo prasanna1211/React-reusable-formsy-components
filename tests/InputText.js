@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
-import InputText from '../lib/InputTextBox.js';
+import InputText from '../dist/InputTextBox.js';
 
 describe(' <InputText /> component shallow Tests', () => {
   const baseProps = {

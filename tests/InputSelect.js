@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
 
-import InputSelect from '../lib/InputSelectBox.js';
+import InputSelect from '../dist/InputSelectBox.js';
 
 describe('<InputSelect /> component shallow tests', () => {
   const baseProps = {

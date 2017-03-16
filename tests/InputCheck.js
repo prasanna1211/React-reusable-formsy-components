@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
 import { shallow, mount } from 'enzyme';
-import InputCheck from '../lib/InputCheckBox.js';
+import InputCheck from '../dist/InputCheckBox.js';
 
 describe(' <InputCheckBox /> component shallow Tests ', () => {
   const baseProps = {
