@@ -5,8 +5,17 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 import { render } from 'react-dom';
-import { InputText, InputSelect, InputCheck, InputRadioButtonGroup, InputSelectCustom } from '../lib/main.js';
+import moment from 'moment';
+import {
+  InputText,
+  InputSelect,
+  InputCheck,
+  InputRadioButtonGroup,
+  InputSelectCustom,
+  InputDateTime } from '../lib/main.js';
 import './style.scss';
+import './bootstrap.css';
+import './dateRangePicker.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -84,6 +93,7 @@ class App extends React.Component {
             validations="isEmail"
             validationError="Not a valid"
             onChangeInput={this.onChangeInput}
+            value=""
           />
           <InputSelect
             name="inputSelect"
@@ -117,6 +127,17 @@ class App extends React.Component {
             autofocus = {false}
             multi={true}
           />
+          <InputDateTime
+            name="date"
+            value = {
+              {
+                startDate: '12/11/1990',
+                endDate: '12/11/2017',
+              }
+            }
+          >
+
+          </InputDateTime>
           <button
             type="submit"
             disabled={!this.state.canSubmit}
