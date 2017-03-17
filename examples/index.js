@@ -23,7 +23,9 @@ class App extends React.Component {
 
     this.state = {
       canSubmit: true,
-      selectValue: ''
+      selectValue: '',
+      startDate: '25/12/2017',
+      endDate: '25/12/2018',
     }
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onReset = this.onReset.bind(this);
@@ -46,6 +48,14 @@ class App extends React.Component {
     ];
     this.onChangeSelect = this.onChangeSelect.bind(this);
     this.loadOptions = this.loadOptions.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
+  }
+
+  onChangeDate() {
+    this.setState({
+      startDate: '01/01/1990',
+      endDate: '13/01/1990',
+    });
   }
 
   onChangeInput(value) {
@@ -131,13 +141,15 @@ class App extends React.Component {
             name="date"
             value = {
               {
-                startDate: '12/11/1990',
-                endDate: '12/11/2017',
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
               }
             }
+            timePicker={true}
           >
 
           </InputDateTime>
+          <input type="button" onClick={this.onChangeDate} value="change date" />
           <button
             type="submit"
             disabled={!this.state.canSubmit}
