@@ -105,7 +105,7 @@ var InputCheckBox = function (_React$Component) {
             ref: this.props.ref,
             className: this.props.fieldClass,
             name: this.props.name,
-            checked: this.props.getValue(),
+            checked: this.props.getValue() || false,
             onChange: this.onChangeInput,
             required: this.props.required,
             style: this.props.fieldStyle
