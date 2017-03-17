@@ -3,9 +3,9 @@ import React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import 'jsdom-global/register';
-import { shallow, mount } from 'enzyme';
-import InputSelectCustom from '../lib/InputSelectCustom.js';
+import { mount } from 'enzyme';
 import Immutable from 'immutable';
+import InputSelectCustom from '../lib/InputSelectCustom.js';
 
 /**
  * Tests only include interaction between formsy and react-select.
@@ -85,5 +85,4 @@ describe(' <InputSelectCustom /> Component ', () => {
     expect(newProps.setValue.calledWith([3, 4])).to.equal(true);
     expect(newProps.onChangeInput.calledWith([3, 4])).to.equal(true);
   });
-
 });
