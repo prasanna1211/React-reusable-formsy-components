@@ -24,8 +24,8 @@ class App extends React.Component {
     this.state = {
       canSubmit: true,
       selectValue: '',
-      startDate: '25/12/2017',
-      endDate: '25/12/2018',
+      startDate: '25/12/2017 12:00:00 am',
+      endDate: '25/12/2018 04:00:00 am',
     }
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onReset = this.onReset.bind(this);
@@ -53,8 +53,8 @@ class App extends React.Component {
 
   onChangeDate() {
     this.setState({
-      startDate: '01/01/1990',
-      endDate: '13/01/1990',
+      startDate: '01/01/1990 12:00:00 am',
+      endDate: '13/01/1990 12:00:00 am',
     });
   }
 
@@ -67,6 +67,7 @@ class App extends React.Component {
   }
 
   onReset() {
+    console.log(" calling in reset ");
     this.refs.hello.reset();
     console.log("Resetting the form ", this.refs.hello.getModel());
   }
@@ -103,6 +104,7 @@ class App extends React.Component {
             validations="isEmail"
             validationError="Not a valid"
             onChangeInput={this.onChangeInput}
+            wrapperClass="divs"
             value=""
           />
           <InputSelect
@@ -110,17 +112,20 @@ class App extends React.Component {
             options={this.selectBoxOptions}
             value="2"
             onChangeInput={this.onChangeInput}
+            wrapperClass="divs"
           />
           <InputCheck
             name="inputCheck"
             displayName="input check"
             onChangeInput={this.onChangeInput}
+            wrapperClass="divs"
           />
           <InputRadioButtonGroup
             name="inputRadio"
             options={this.radioButtonGroupOptions}
             value="2"
             onChangeInput={this.onChangeInput}
+            wrapperClass="divs"
           />
           <input
             type="button"
@@ -136,6 +141,7 @@ class App extends React.Component {
             className = 'react-select'
             autofocus = {false}
             multi={true}
+            wrapperClass="divs"
           />
           <InputDateTime
             name="date"
@@ -146,8 +152,8 @@ class App extends React.Component {
               }
             }
             timePicker={true}
+            wrapperClass="divs"
           >
-
           </InputDateTime>
           <input type="button" onClick={this.onChangeDate} value="change date" />
           <button
