@@ -47,7 +47,6 @@ class App extends React.Component {
       { value: 'six', label: 'six', className: 'select-options-custom' }
     ];
     this.onChangeSelect = this.onChangeSelect.bind(this);
-    this.loadOptions = this.loadOptions.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
   }
 
@@ -59,7 +58,7 @@ class App extends React.Component {
   }
 
   onChangeInput(value) {
-    console.log(' changed value ', value);
+    //console.log(' changed value ', value);
   }
 
   onChangeSelect(value) {
@@ -67,28 +66,18 @@ class App extends React.Component {
   }
 
   onReset() {
-    console.log(" calling in reset ");
-    this.refs.hello.reset();
-    console.log("Resetting the form ", this.refs.hello.getModel());
+    //console.log(" calling in getPristineValues ");
+    //console.log(' pristine values ', this.refs.hello.getPristineValues());
+    //const obj = this.refs.hello.getPristineValues();
+    //console.log("values are ", this.refs.hello.getPristineValues());
+    this.setState({
+      inputText: 'a'
+    });
+    //debugger;
   }
 
   onSubmit() {
     console.log('submitting ', this.refs.hello.getModel());
-  }
-
-  loadOptions(input, callback) {
-    console.log(' load options ', input)
-    setTimeout(function() {
-        callback(null, {
-            options: [
-                { value: 'one', label: 'One' },
-                { value: 'two', label: 'Two' }
-            ],
-            // CAREFUL! Only set this to true when there are no more options,
-            // or more specific queries will not be sent to the server.
-            complete: true
-        });
-    }, 500);
   }
 
   render() {
@@ -105,7 +94,7 @@ class App extends React.Component {
             validationError="Not a valid"
             onChangeInput={this.onChangeInput}
             wrapperClass="divs"
-            value=""
+            value={this.state.inputText || 'a'}
           />
           <InputSelect
             name="inputSelect"
