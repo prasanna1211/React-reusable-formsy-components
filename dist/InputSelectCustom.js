@@ -39,7 +39,7 @@ var InputSelectCustom = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (InputSelectCustom.__proto__ || Object.getPrototypeOf(InputSelectCustom)).call(this, props));
 
     _this.state = {
-      value: ''
+      value: _this.props.value
     };
 
     _this.onChangeInput = _this.onChangeInput.bind(_this);
@@ -60,7 +60,8 @@ var InputSelectCustom = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.value !== this.props.value) {
+      if (!_underscore2.default.isEqual(nextProps.value, this.props.value) || nextProps.isValuePristine) {
+        // eslint-disable-line
         this.setState({
           value: nextProps.value
         });
@@ -75,7 +76,7 @@ var InputSelectCustom = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput(this.state.value);
+        this.props.onChangeInput(this.props.name, this.state.value);
       }
     }
 
@@ -101,7 +102,7 @@ var InputSelectCustom = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'divs' },
         _react2.default.createElement(_reactSelect2.default, _extends({}, this.props, {
           onChange: this.onChangeInput,
           value: this.props.getValue()
@@ -114,6 +115,7 @@ var InputSelectCustom = function (_React$Component) {
 }(_react2.default.Component);
 
 InputSelectCustom.propTypes = {
+  name: _react2.default.PropTypes.string.isRequired,
   value: _react2.default.PropTypes.any,
   onChangeInput: _react2.default.PropTypes.func,
   setValue: _react2.default.PropTypes.func.isRequired,

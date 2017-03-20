@@ -78,6 +78,7 @@ class App extends React.Component {
   }
 
   onReset() {
+    // on clicking reset just update the pristine value of form elements to true so that it will render from the value prop
     let isSettingPristineValue = {};
     _.each((this.formName), (name) => {
       isSettingPristineValue[name] = true;
@@ -93,8 +94,8 @@ class App extends React.Component {
 
   render() {
     const dateTime = {
-      startDate: '25/12/2017 12:00:00 am',
-      endDate: '25/12/2018 12:00:01 am',
+      startDate: moment('25/12/2017 12:00:00 am', 'DD/MM/YYYY hh:mm:ss a'),
+      endDate: moment('25/12/2018 12:00:01 am', 'DD/MM/YYYY hh:mm:ss a'),
     };
 
     return (
@@ -106,6 +107,7 @@ class App extends React.Component {
         >
           <InputText
             name="1"
+            label="Textbox:"
             validations="isEmail"
             validationError="Not a valid"
             onChangeInput={this.onChangeInput}
@@ -115,6 +117,7 @@ class App extends React.Component {
           />
           <InputSelect
             name="2"
+            label="SelectBox:"
             options={this.selectBoxOptions}
             value="2"
             onChangeInput={this.onChangeInput}
@@ -124,6 +127,7 @@ class App extends React.Component {
           />
           <InputCheck
             name="3"
+            label="Checkbox:"
             displayName="input check"
             onChangeInput={this.onChangeInput}
             isValuePristine={this.state.isSettingPristineValue[3]}
@@ -132,17 +136,14 @@ class App extends React.Component {
           />
           <InputRadioButtonGroup
             name="4"
+            label="Radio button:"
             options={this.radioButtonGroupOptions}
             onChangeInput={this.onChangeInput}
             wrapperClass="divs"
             isValuePristine={this.state.isSettingPristineValue[4]}
             value={'2'}
           />
-          <input
-            type="button"
-            value="clear"
-            onClick={this.onReset}
-          />
+
           <InputSelectCustom
             name="5"
             options = { this.customSelect }
@@ -150,19 +151,28 @@ class App extends React.Component {
             className = 'react-select'
             autofocus = {false}
             multi={true}
-            wrapperClass="divs"
             isValuePristine={this.state.isSettingPristineValue[5]}
             value={['two', 'three']}
+            wrapperClass="select-custom"
+            label="React-select"
+            labelClass="select-label"
+            selectClass="select-class"
           />
           <InputDateTime
             name="6"
             timePicker={true}
-            wrapperClass="divs"
+            wrapperClass="date-time"
             onChangeInput = { this.onChangeInput }
             isValuePristine={this.state.isSettingPristineValue[6]}
             value={dateTime}
           >
+            Select a date
           </InputDateTime>
+          <input
+            type="button"
+            value="Reset to pristine value"
+            onClick={this.onReset}
+          />
           <button
             type="submit"
             disabled={!this.state.canSubmit}
