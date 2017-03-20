@@ -108,8 +108,6 @@ class App extends React.Component {
           <InputText
             name="1"
             label="Textbox:"
-            validations="isEmail"
-            validationError="Not a valid"
             onChangeInput={this.onChangeInput}
             wrapperClass="divs"
             value='abcdef'
