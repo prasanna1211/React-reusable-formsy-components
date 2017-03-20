@@ -25,25 +25,17 @@ class App extends React.Component {
     this.state = {
       canSubmit: true,
       selectValue: '',
-      startDate: '25/12/2017 12:00:00 am',
-      endDate: '25/12/2018 04:00:00 am',
       isSettingPristineValue: {},
-      formPristineValues: {
-        '1': 'a',
-        '2': '2',
-        '3': true,
-        '4': '2',
-        '5': [ 'two', 'three'],
-        '6': {
-          startDate: '25/12/2017 12:00:00 am',
-          endDate: '25/12/2018 12:00:00 am',
-        },
-      },
     };
+
+    // Hold the form names. Used to construct a state object with true.
     this.formName = [1, 2, 3, 4, 5, 6];
+    // On changing input. used as callback for altering {this.state.isSettingPristineValue}
     this.onChangeInput = this.onChangeInput.bind(this);
+    // Custom reset function. Resets the pristine values
     this.onReset = this.onReset.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    // Static options
     this.selectBoxOptions = [
       { name: "option1", value: "1" },
       { name: "option2", value: "2" }
@@ -60,34 +52,23 @@ class App extends React.Component {
       { value: 'five', label: 'five', className: 'select-options-custom' },
       { value: 'six', label: 'six', className: 'select-options-custom' }
     ];
-    this.onChangeDate = this.onChangeDate.bind(this);
   }
 
   componentDidMount() {
+    // Set all key value pair to have true for all form fields with name.
     let isSettingPristineValue = {};
     _.each((this.formName), (name) => {
       isSettingPristineValue[name] = true;
     });
-
+    // This will store every input as untouched
     this.setState({
       isSettingPristineValue
     });
   }
 
-  componentWillUpdate(nextProps, nextState) {
-
-  }
-
-  onChangeDate() {
-    this.setState({
-      startDate: '01/01/1990 12:00:00 am',
-      endDate: '13/01/1990 12:00:00 am',
-    });
-  }
-
   onChangeInput(name, value) {
-    //console.log(' changed value ', value);
-    if(this.state.formPristineValues[name] !== value) {
+    // If any of the form input change and if it is not the original value
+    if(!_.isEqual(this.refs.hello.getPristineValues()[name], value)) {
       let isSettingPristineValue = JSON.parse(JSON.stringify(this.state.isSettingPristineValue));
       isSettingPristineValue[name] = false;
       this.setState({
@@ -97,8 +78,12 @@ class App extends React.Component {
   }
 
   onReset() {
+    let isSettingPristineValue = {};
+    _.each((this.formName), (name) => {
+      isSettingPristineValue[name] = true;
+    });
     this.setState({
-      isSettingPristineValue: this.refs.hello.getPristineValues(),
+      isSettingPristineValue,
     });
   }
 
@@ -107,6 +92,11 @@ class App extends React.Component {
   }
 
   render() {
+    const dateTime = {
+      startDate: '25/12/2017 12:00:00 am',
+      endDate: '25/12/2018 12:00:01 am',
+    };
+
     return (
       <div>
         <Formsy.Form
@@ -120,7 +110,7 @@ class App extends React.Component {
             validationError="Not a valid"
             onChangeInput={this.onChangeInput}
             wrapperClass="divs"
-            value={this.state.formPristineValues['1']}
+            value='abcdef'
             isValuePristine={this.state.isSettingPristineValue[1]}
           />
           <InputSelect
@@ -129,7 +119,7 @@ class App extends React.Component {
             value="2"
             onChangeInput={this.onChangeInput}
             isValuePristine={this.state.isSettingPristineValue[2]}
-            value={this.state.formPristineValues['2']}
+            value={'2'}
             wrapperClass="divs"
           />
           <InputCheck
@@ -137,7 +127,7 @@ class App extends React.Component {
             displayName="input check"
             onChangeInput={this.onChangeInput}
             isValuePristine={this.state.isSettingPristineValue[3]}
-            value={this.state.formPristineValues['3']}
+            value={true}
             wrapperClass="divs"
           />
           <InputRadioButtonGroup
@@ -146,7 +136,7 @@ class App extends React.Component {
             onChangeInput={this.onChangeInput}
             wrapperClass="divs"
             isValuePristine={this.state.isSettingPristineValue[4]}
-            value={this.state.formPristineValues['4']}
+            value={'2'}
           />
           <input
             type="button"
@@ -156,26 +146,23 @@ class App extends React.Component {
           <InputSelectCustom
             name="5"
             options = { this.customSelect }
-            loadOptions = { this.loadOptions }
             onChangeInput = { this.onChangeInput }
             className = 'react-select'
             autofocus = {false}
             multi={true}
             wrapperClass="divs"
             isValuePristine={this.state.isSettingPristineValue[5]}
-            value={this.state.formPristineValues['5']}
+            value={['two', 'three']}
           />
           <InputDateTime
             name="6"
-            value = {this.state.formPristineValues['6']}
             timePicker={true}
             wrapperClass="divs"
             onChangeInput = { this.onChangeInput }
             isValuePristine={this.state.isSettingPristineValue[6]}
-            value={this.state.formPristineValues['6']}
+            value={dateTime}
           >
           </InputDateTime>
-          <input type="button" onClick={this.onChangeDate} value="change date" />
           <button
             type="submit"
             disabled={!this.state.canSubmit}
