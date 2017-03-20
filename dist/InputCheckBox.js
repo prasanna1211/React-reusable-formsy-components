@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 var _pickReactKnownProp = require('pick-react-known-prop');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,6 +67,11 @@ var InputCheckBox = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return this.state.value !== nextState.value;
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -89,6 +98,7 @@ var InputCheckBox = function (_React$Component) {
     key: 'render',
     value: function render() {
       // inline or block based on the props
+      console.log(' rendered input checkbox ', this.state.value);
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
         'div',
@@ -109,7 +119,7 @@ var InputCheckBox = function (_React$Component) {
           ref: this.props.ref,
           className: this.props.fieldClass,
           name: this.props.name,
-          checked: this.props.getValue() || false,
+          checked: this.state.value,
           onChange: this.onChangeInput,
           required: this.props.required,
           style: this.props.fieldStyle
@@ -149,8 +159,8 @@ InputCheckBox.propTypes = {
 
 InputCheckBox.defaultProps = {
   value: false,
-  wrapperClass: '',
-  fieldClass: '',
+  wrapperClass: undefined,
+  fieldClass: undefined,
   onChangeInput: function onChangeInput() {},
   validations: undefined,
   required: undefined,

@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 var _pickReactKnownProp = require('pick-react-known-prop');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,6 +67,11 @@ var InputTextBox = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return this.state.value !== nextState.value;
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -71,6 +80,7 @@ var InputTextBox = function (_React$Component) {
     value: function componentDidUpdate(prevProps, prevState) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
+
         this.props.setValue(this.state.value);
         this.props.onChangeInput(this.props.name, this.state.value);
       }
@@ -81,6 +91,7 @@ var InputTextBox = function (_React$Component) {
   }, {
     key: 'onChangeInput',
     value: function onChangeInput(event) {
+      console.log(' setting state at bottom ', event.target.value, this.props.isValuePristine);
       this.setState({
         value: event.target.value
       });
@@ -89,7 +100,9 @@ var InputTextBox = function (_React$Component) {
     key: 'render',
     value: function render() {
       // inline or block based on the props
+      //console.log(' value ', this.state.value);
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
+      console.log(' rendered input text box ', this.state.value);
       return _react2.default.createElement(
         'div',
         {
@@ -109,7 +122,7 @@ var InputTextBox = function (_React$Component) {
           ref: this.props.ref,
           className: this.props.fieldClass,
           name: this.props.name,
-          value: this.props.getValue(),
+          value: this.state.value,
           onChange: this.onChangeInput,
           required: this.props.required,
           style: this.props.fieldStyle
@@ -147,8 +160,8 @@ InputTextBox.propTypes = {
 
 InputTextBox.defaultProps = {
   value: undefined,
-  wrapperClass: '',
-  fieldClass: '',
+  wrapperClass: undefined,
+  fieldClass: undefined,
   onChangeInput: function onChangeInput() {},
   validations: undefined,
   required: undefined,

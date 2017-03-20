@@ -68,6 +68,11 @@ var InputRadioButton = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return !_underscore2.default.isEqual(this.state.value, nextState.value);
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -105,8 +110,7 @@ var InputRadioButton = function (_React$Component) {
           { key: option.name, htmlFor: option.name },
           _react2.default.createElement('input', _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(newThis.props), {
             type: 'radio',
-            checked: newThis.props.getValue() === option.value,
-            ref: newThis.props.ref,
+            checked: newThis.state.value === option.value,
             className: newThis.props.fieldClass,
             name: newThis.props.name,
             onChange: function onChange() {
@@ -124,6 +128,7 @@ var InputRadioButton = function (_React$Component) {
     key: 'render',
     value: function render() {
       // inline or block based on the props
+      console.log(' rendered radio button ', this.state.value);
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
         'div',
@@ -173,9 +178,9 @@ InputRadioButton.propTypes = {
 };
 
 InputRadioButton.defaultProps = {
-  value: 'undefined',
+  value: undefined,
   wrapperClass: undefined,
-  fieldClass: '',
+  fieldClass: undefined,
   onChangeInput: function onChangeInput() {},
   validations: undefined,
   required: undefined,

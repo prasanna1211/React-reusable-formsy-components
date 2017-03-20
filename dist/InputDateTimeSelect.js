@@ -18,6 +18,10 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71,6 +75,11 @@ var InputDateTime = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return !_underscore2.default.isEqual(this.state.startDate, nextState.startDate) || !_underscore2.default.isEqual(this.state.endDate, nextState.endDate);
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -101,7 +110,11 @@ var InputDateTime = function (_React$Component) {
     key: 'render',
     value: function render() {
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
-      var value = this.props.getValue();
+      var value = {
+        startDate: this.state.startDate,
+        endDate: this.state.endDate
+      };
+      console.log(' rendered date time ', this.state.startDate, this.state.endDate);
       return _react2.default.createElement(
         'div',
         {

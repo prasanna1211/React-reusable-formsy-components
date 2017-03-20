@@ -67,6 +67,11 @@ var InputSelectCustom = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return !_underscore2.default.isEqual(this.state.value, nextState.value);
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -100,6 +105,7 @@ var InputSelectCustom = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      console.log(' rendered input select custom ', this.state.value);
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
         'div',
@@ -117,7 +123,7 @@ var InputSelectCustom = function (_React$Component) {
         ),
         _react2.default.createElement(_reactSelect2.default, _extends({}, this.props, {
           onChange: this.onChangeInput,
-          value: this.props.getValue(),
+          value: this.state.value,
           className: this.props.selectClass
         })),
         _react2.default.createElement(

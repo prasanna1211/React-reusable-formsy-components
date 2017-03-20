@@ -67,6 +67,11 @@ var InputSelectBox = function (_React$Component) {
         });
       }
     }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return this.state.value !== nextState.value;
+    }
 
     // only when there is state change, change formsy and display value to be changed
 
@@ -94,6 +99,7 @@ var InputSelectBox = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(' rendered selectbox ', this.state.value);
       // inline or block based on the props
       var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
@@ -116,7 +122,7 @@ var InputSelectBox = function (_React$Component) {
             className: this.props.selectClass,
             ref: this.props.ref,
             name: this.props.name,
-            value: this.props.getValue(),
+            value: this.state.value,
             onChange: this.onChangeSelect,
             required: this.props.required
           }),
