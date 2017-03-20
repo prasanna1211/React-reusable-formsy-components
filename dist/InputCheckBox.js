@@ -99,20 +99,22 @@ var InputCheckBox = function (_React$Component) {
         _react2.default.createElement(
           'label',
           {
-            htmlFor: this.props.name
+            htmlFor: this.props.name,
+            className: this.props.labelClass
           },
-          _react2.default.createElement('input', _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
-            type: 'checkbox',
-            ref: this.props.ref,
-            className: this.props.fieldClass,
-            name: this.props.name,
-            checked: this.props.getValue() || false,
-            onChange: this.onChangeInput,
-            required: this.props.required,
-            style: this.props.fieldStyle
-          })),
-          this.props.displayName
+          this.props.label
         ),
+        _react2.default.createElement('input', _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
+          type: 'checkbox',
+          ref: this.props.ref,
+          className: this.props.fieldClass,
+          name: this.props.name,
+          checked: this.props.getValue() || false,
+          onChange: this.onChangeInput,
+          required: this.props.required,
+          style: this.props.fieldStyle
+        })),
+        this.props.displayName,
         _react2.default.createElement(
           'div',
           { className: this.props.errorClass, style: errorMessageStyle },
@@ -140,7 +142,9 @@ InputCheckBox.propTypes = {
   ref: _react2.default.PropTypes.string,
   getValue: _react2.default.PropTypes.func.isRequired,
   displayName: _react2.default.PropTypes.string.isRequired,
-  errorClass: _react2.default.PropTypes.string
+  errorClass: _react2.default.PropTypes.string,
+  label: _react2.default.PropTypes.string,
+  labelClass: _react2.default.PropTypes.string
 };
 
 InputCheckBox.defaultProps = {
@@ -155,7 +159,9 @@ InputCheckBox.defaultProps = {
   inline: undefined,
   validationError: undefined,
   ref: '',
-  errorClass: undefined
+  errorClass: undefined,
+  label: undefined,
+  labelClass: undefined
 };
 
 exports.default = InputCheckBox;

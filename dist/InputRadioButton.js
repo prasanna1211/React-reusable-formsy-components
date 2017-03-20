@@ -131,6 +131,14 @@ var InputRadioButton = function (_React$Component) {
           className: this.props.wrapperClass,
           style: this.props.wrapperStyle
         },
+        _react2.default.createElement(
+          'label',
+          {
+            htmlFor: this.props.name,
+            className: this.props.labelClass
+          },
+          this.props.label
+        ),
         this.renderRadioButtons(this.props.options),
         _react2.default.createElement(
           'div',
@@ -159,7 +167,9 @@ InputRadioButton.propTypes = {
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
   ref: _react2.default.PropTypes.string, //eslint-disable-line
   getValue: _react2.default.PropTypes.func.isRequired, //eslint-disable-line
-  errorClass: _react2.default.PropTypes.string
+  errorClass: _react2.default.PropTypes.string,
+  label: _react2.default.PropTypes.string,
+  labelClass: _react2.default.PropTypes.string
 };
 
 InputRadioButton.defaultProps = {
@@ -174,7 +184,9 @@ InputRadioButton.defaultProps = {
   inline: undefined,
   validationError: undefined,
   ref: '',
-  errorClass: undefined
+  errorClass: undefined,
+  label: undefined,
+  labelClass: undefined
 };
 
 exports.default = InputRadioButton;

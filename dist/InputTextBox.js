@@ -96,6 +96,14 @@ var InputTextBox = function (_React$Component) {
           className: this.props.wrapperClass,
           style: this.props.wrapperStyle
         },
+        _react2.default.createElement(
+          'label',
+          {
+            htmlFor: this.props.name,
+            className: this.props.labelClass
+          },
+          this.props.label
+        ),
         _react2.default.createElement('input', _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
           type: 'text',
           ref: this.props.ref,
@@ -132,7 +140,9 @@ InputTextBox.propTypes = {
   inline: _react2.default.PropTypes.bool,
   getErrorMessage: _react2.default.PropTypes.func.isRequired,
   ref: _react2.default.PropTypes.string,
-  getValue: _react2.default.PropTypes.func.isRequired
+  getValue: _react2.default.PropTypes.func.isRequired,
+  label: _react2.default.PropTypes.string,
+  labelClass: _react2.default.PropTypes.string
 };
 
 InputTextBox.defaultProps = {
@@ -147,7 +157,9 @@ InputTextBox.defaultProps = {
   inline: undefined,
   validationError: undefined,
   ref: '',
-  errorClass: undefined
+  errorClass: undefined,
+  label: undefined,
+  labelClass: undefined
 };
 
 exports.default = InputTextBox;

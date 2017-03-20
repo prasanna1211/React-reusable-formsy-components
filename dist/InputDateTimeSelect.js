@@ -92,7 +92,6 @@ var InputDateTime = function (_React$Component) {
   }, {
     key: 'onChangeInput',
     value: function onChangeInput(event, picker) {
-      // console.log(picker.startDate.format('DD/MM/YYYY hh:mm:ss a'), picker.endDate.format('DD/MM/YYYY hh:mm:ss a'));
       this.setState({
         startDate: picker.startDate.format('DD/MM/YYYY hh:mm:ss a'),
         endDate: picker.endDate.format('DD/MM/YYYY hh:mm:ss a')

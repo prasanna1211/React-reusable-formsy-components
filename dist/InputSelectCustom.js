@@ -100,13 +100,31 @@ var InputSelectCustom = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var errorMessageStyle = this.props.inline ? { display: 'inline-block' } : null;
       return _react2.default.createElement(
         'div',
-        { className: 'divs' },
+        {
+          className: this.props.wrapperClass,
+          style: this.props.wrapperStyle
+        },
+        _react2.default.createElement(
+          'label',
+          {
+            htmlFor: this.props.name,
+            className: this.props.labelClass
+          },
+          this.props.label
+        ),
         _react2.default.createElement(_reactSelect2.default, _extends({}, this.props, {
           onChange: this.onChangeInput,
-          value: this.props.getValue()
-        }))
+          value: this.props.getValue(),
+          className: this.props.selectClass
+        })),
+        _react2.default.createElement(
+          'div',
+          { className: this.props.errorClass, style: errorMessageStyle },
+          this.props.getErrorMessage()
+        )
       );
     }
   }]);
@@ -119,12 +137,27 @@ InputSelectCustom.propTypes = {
   value: _react2.default.PropTypes.any,
   onChangeInput: _react2.default.PropTypes.func,
   setValue: _react2.default.PropTypes.func.isRequired,
-  getValue: _react2.default.PropTypes.func.isRequired
+  getValue: _react2.default.PropTypes.func.isRequired,
+  wrapperClass: _react2.default.PropTypes.string,
+  wrapperStyle: _react2.default.PropTypes.object,
+  inline: _react2.default.PropTypes.bool,
+  getErrorMessage: _react2.default.PropTypes.func.isRequired,
+  errorClass: _react2.default.PropTypes.string,
+  label: _react2.default.PropTypes.string,
+  labelClass: _react2.default.PropTypes.string,
+  selectClass: _react2.default.PropTypes.string
 };
 
 InputSelectCustom.defaultProps = {
   value: undefined,
-  onChangeInput: function onChangeInput() {}
+  onChangeInput: function onChangeInput() {},
+  selectClass: undefined,
+  wrapperClass: undefined,
+  wrapperStyle: undefined,
+  inline: undefined,
+  errorClass: undefined,
+  label: undefined,
+  labelClass: undefined
 };
 
 exports.default = InputSelectCustom;

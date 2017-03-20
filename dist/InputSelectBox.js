@@ -103,6 +103,14 @@ var InputSelectBox = function (_React$Component) {
           style: this.props.wrapperStyle
         },
         _react2.default.createElement(
+          'label',
+          {
+            htmlFor: this.props.name,
+            className: this.props.labelClass
+          },
+          this.props.label
+        ),
+        _react2.default.createElement(
           'select',
           _extends({}, (0, _pickReactKnownProp.pickHTMLProps)(this.props), {
             className: this.props.selectClass,
@@ -162,7 +170,9 @@ InputSelectBox.propTypes = {
   disableDefaultTextOnSelect: _react2.default.PropTypes.bool,
   defaultText: _react2.default.PropTypes.string,
   selectClass: _react2.default.PropTypes.string,
-  optionClass: _react2.default.PropTypes.string
+  optionClass: _react2.default.PropTypes.string,
+  label: _react2.default.PropTypes.string,
+  labelClass: _react2.default.PropTypes.string
 };
 
 InputSelectBox.defaultProps = {
@@ -176,8 +186,10 @@ InputSelectBox.defaultProps = {
   disableDefaultTextOnSelect: true,
   required: undefined,
   defaultText: 'Select An Option',
-  selectClass: '',
-  optionClass: ''
+  selectClass: undefined,
+  optionClass: undefined,
+  labelClass: undefined,
+  label: undefined
 };
 
 exports.default = InputSelectBox;
