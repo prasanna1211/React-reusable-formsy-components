@@ -56,7 +56,8 @@ var InputCheckBox = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.value !== this.props.value) {
+      if (nextProps.value !== this.props.value || nextProps.isValuePristine) {
+        // eslint-disable-line
         this.setState({
           value: nextProps.value
         });
@@ -71,7 +72,7 @@ var InputCheckBox = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput(this.state.value);
+        this.props.onChangeInput(this.props.name, this.state.value);
       }
     }
 
@@ -105,7 +106,7 @@ var InputCheckBox = function (_React$Component) {
             ref: this.props.ref,
             className: this.props.fieldClass,
             name: this.props.name,
-            checked: this.props.getValue(),
+            checked: this.props.getValue() || false,
             onChange: this.onChangeInput,
             required: this.props.required,
             style: this.props.fieldStyle

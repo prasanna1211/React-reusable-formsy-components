@@ -56,7 +56,8 @@ var InputTextBox = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.value !== this.props.value) {
+      if (nextProps.value !== this.props.value || nextProps.isValuePristine) {
+        // eslint-disable-line
         this.setState({
           value: nextProps.value
         });
@@ -71,7 +72,7 @@ var InputTextBox = function (_React$Component) {
       // eslint-disable-line
       if (this.state.value !== prevState.value) {
         this.props.setValue(this.state.value);
-        this.props.onChangeInput(this.state.value);
+        this.props.onChangeInput(this.props.name, this.state.value);
       }
     }
 
